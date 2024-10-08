@@ -1,8 +1,10 @@
 # JupyterLab Freeze (Improved)
 
+**WORK IN PROGRESS!**
+
 Allows you to freeze cells in JupyterLab notebooks. Based on ![https://github.com/DataDog/jupyterlab-freeze](https://github.com/DataDog/jupyterlab-freeze). 
 
-![](/images/example.gif)
+![example-usage](/images/example.gif)
 
 This extension is based on the freeze extension by [jupyter_contrib_nbextensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tree/master/src/jupyter_contrib_nbextensions/nbextensions/freeze).
 
