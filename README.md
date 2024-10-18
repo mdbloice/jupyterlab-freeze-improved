@@ -2,6 +2,8 @@
 
 **WORK IN PROGRESS!**
 
+An **opinionated** version of `DataDog/jupyterlab-freeze`.
+
 Allows you to freeze cells in JupyterLab notebooks. Based on <https://github.com/DataDog/jupyterlab-freeze>. 
 
 ![example-usage](/images/example.gif)
