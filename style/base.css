@@ -3,6 +3,9 @@
   This product includes software developed at Datadog (https://www.datadoghq.com/) Copyright 2023 Datadog, Inc.
 */
 
+/*
+    Modifications made by Marcus D. Bloice, Medical University of Graz. Copyright 2024.
+*/
 
 /*
     See the JupyterLab Developer Guide for useful CSS Patterns:
@@ -10,9 +13,15 @@
     https://jupyterlab.readthedocs.io/en/stable/developer/css.html
 */
 
+/*
+    MDB: these are no longer used, as the code to change the cell colour has been removed. 
+    However, they have been changed to #ffffff anyway from #71b8e7 for --jp-frozen-bg 
+    and #ffec8a for --jp-readonly-bg.
+*/
+
 .jp-Cell {
-    --jp-frozen-bg: #71b8e7;
-    --jp-readonly-bg: #ffec8a;
+    --jp-frozen-bg: #ffffff;
+    --jp-readonly-bg: #ffffff;
 }
 
 /*

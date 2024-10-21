@@ -1,6 +1,9 @@
 /* 
   Unless explicitly stated otherwise all files in this repository are licensed under the BSD 3-Clause License.
   This product includes software developed at Datadog (https://www.datadoghq.com/) Copyright 2023 Datadog, Inc.
+
+  Modifications made by Marcus D. Bloice (https://github.com/mdbloice) Copyright 2024. 
+  This modified code is released under the BSD 3-Clause License, as per the original license terms.
 */
 
 import { ISessionContext } from '@jupyterlab/apputils';
@@ -53,30 +56,72 @@ function updateMetadata(state: CellState, cell: Cell<ICellModel>) {
   // If the cell is not code or markdown, ignore it
   if (!isSupportedCellType(cell)) return;
 
-  switch (state) {
-    case 'normal':
-      cell.model.setMetadata('editable', true);
-      cell.model.setMetadata('deletable', true);
-      cell.model.setMetadata('frozen', false);
-      cell.removeClass('jp-mod-frozen');
-      cell.removeClass('jp-mod-frozen-readonly');
-      break;
-    case 'read_only':
-      cell.model.setMetadata('editable', false);
-      cell.model.setMetadata('deletable', false);
-      cell.model.setMetadata('frozen', false);
-      cell.removeClass('jp-mod-frozen');
-      cell.addClass('jp-mod-frozen-readonly');
-      break;
-    case 'frozen':
-      cell.model.setMetadata('editable', false);
-      cell.model.setMetadata('deletable', false);
-      cell.model.setMetadata('frozen', true);
-      cell.addClass('jp-mod-frozen');
-      cell.removeClass('jp-mod-frozen-readonly');
-      break;
+  // MDB: Behaviour depends on the cell type. 
+  // For code cells, lock makes the cell read-only but still executable, while freeze disables execution.
+  // For Markdown cells, we want read-only and freeze to disallow viewing the source code entirely.
+
+  // For code cells do the following:
+  if (cell.model.type == 'code') {
+    switch (state) {
+      case 'normal':
+        cell.model.setMetadata('editable', true);
+        cell.model.setMetadata('deletable', true);
+        cell.model.setMetadata('frozen', false);
+        // MDB: Do not alter the CSS as we do not want to change the cell colours.
+        // cell.removeClass('jp-mod-frozen');
+        // cell.removeClass('jp-mod-frozen-readonly');
+        break;
+      case 'read_only':
+        cell.model.setMetadata('editable', false);
+        cell.model.setMetadata('deletable', false);
+        cell.model.setMetadata('frozen', false);
+        // MDB: Do not alter the CSS as we do not want to change the cell colours.
+        // cell.removeClass('jp-mod-frozen');
+        // cell.addClass('jp-mod-frozen-readonly');
+        break;
+      case 'frozen':
+        cell.model.setMetadata('editable', false);
+        cell.model.setMetadata('deletable', false);
+        cell.model.setMetadata('frozen', true);
+        // MDB: Do not alter the CSS as we do not want to change the cell colours.
+        // cell.addClass('jp-mod-frozen');
+        // cell.removeClass('jp-mod-frozen-readonly');
+        break;
+    }
+    cell.update();
   }
-  cell.update();
+
+  // For markdown cells do the following:
+  if (cell.model.type == 'markdown') {
+    switch (state) {
+      case 'normal':
+        cell.model.setMetadata('editable', true);
+        cell.model.setMetadata('deletable', true);
+        cell.model.setMetadata('frozen', false);
+        // MDB: Do not alter the CSS as we do not want to change the cell colours.
+        // cell.removeClass('jp-mod-frozen');
+        // cell.removeClass('jp-mod-frozen-readonly');
+        break;
+      case 'read_only':
+        cell.model.setMetadata('editable', false);
+        cell.model.setMetadata('deletable', false);
+        cell.model.setMetadata('frozen', true);  // MDB: changed from false to true here.
+        // MDB: Do not alter the CSS as we do not want to change the cell colours.
+        // cell.removeClass('jp-mod-frozen');
+        // cell.addClass('jp-mod-frozen-readonly');
+        break;
+      case 'frozen':
+        cell.model.setMetadata('editable', false);
+        cell.model.setMetadata('deletable', false);
+        cell.model.setMetadata('frozen', true);
+        // MDB: Do not alter the CSS as we do not want to change the cell colours.
+        // cell.addClass('jp-mod-frozen');
+        // cell.removeClass('jp-mod-frozen-readonly');
+        break;
+    }
+    cell.update();
+  }
+ 
 }
 
 const FreezeComponent = (props: {
