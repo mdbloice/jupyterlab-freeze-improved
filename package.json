@@ -1,7 +1,7 @@
 {
     "name": "jupyterlab_freeze_improved",
     "version": "1.0.0",
-    "description": "Jupyter freeze extension for JupyterLab, based on jupyterlab_freeze.",
+    "description": "Jupyter freeze extension for JupyterLab, to enable cells to be made read-only.",
     "keywords": [
         "jupyter",
         "jupyterlab",
@@ -37,7 +37,7 @@
         "clean": "jlpm clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
-        "clean:labextension": "rimraf jupyterlab_freeze/labextension jupyterlab_freeze/_version.py",
+        "clean:labextension": "rimraf jupyterlab_freeze_improved/labextension jupyterlab_freeze_improved/_version.py",
         "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
         "eslint": "jlpm eslint:check --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
@@ -101,7 +101,7 @@
     },
     "jupyterlab": {
         "extension": true,
-        "outputDir": "jupyterlab_freeze/labextension"
+        "outputDir": "jupyterlab_freeze_improved/labextension"
     },
     "eslintIgnore": [
         "node_modules",

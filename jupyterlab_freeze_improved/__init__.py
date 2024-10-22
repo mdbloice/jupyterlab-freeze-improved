@@ -17,5 +17,5 @@ except ImportError:
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
-        "dest": "jupyterlab_freeze_imrpoved"
+        "dest": "jupyterlab_freeze_improved"
     }]
