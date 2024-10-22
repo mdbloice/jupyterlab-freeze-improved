@@ -3,6 +3,10 @@
   This product includes software developed at Datadog (https://www.datadoghq.com/) Copyright 2023 Datadog, Inc.
 */
 
+/*
+  Modifictions by Marcus D. Bloice, Medical University Graz, Copyright 2024.
+*/
+
 import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
@@ -13,10 +17,10 @@ import { NotebookPanel } from '@jupyterlab/notebook';
 import { FreezeWidget } from './freeze';
 
 /**
- * Initialization data for the jupyterlab-freeze extension.
+ * Initialization data for the jupyterlab-freeze-improved extension.
  */
 const plugin: JupyterFrontEndPlugin<void> = {
-  id: 'jupyterlab-freeze:plugin',
+  id: 'jupyterlab-freeze-improved:plugin',
   description: 'Freeze code and markdown cells so that they are not editable, executable, or deletable.',
   autoStart: true,
   requires: [INotebookTracker],
