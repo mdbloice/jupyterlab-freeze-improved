@@ -10,7 +10,7 @@ Allows you to freeze cells in JupyterLab notebooks, which can be useful in teach
 
 This extension allows to make cells read-only or frozen. It provides three buttons:
 
-![freeze-icons](images/freeze-icons.png)
+![freeze-icons](images/freeze-icons-descriptions.png)
 
 Namely:
 
