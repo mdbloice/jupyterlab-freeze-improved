@@ -4,7 +4,7 @@
 
 An **opinionated** version of `DataDog/jupyterlab-freeze`. 
 
-Allows you to freeze cells in JupyterLab notebooks, which can be useful in teaching enviroments, where students can be prevented from accidentally altering code cells, or viewing the source of markdown cells meant purely for . Forked from <https://github.com/DataDog/jupyterlab-freeze>.
+Allows you to freeze cells in JupyterLab notebooks. This can be useful in teaching enviroments, where students can be prevented from accidentally altering code cells, or viewing the source of markdown cells that are meant purely for reading. Forked from <https://github.com/DataDog/jupyterlab-freeze>.
 
 ---
 
@@ -31,10 +31,6 @@ For **markdown cells**:
 - _Read-only_: Cell markdown source can be viewed by double-clicking on it, but cannot be changed. The cell also cannot be deleted.
 - _Frozen_: Cell input cannot be viewed by double-clicking on it. The cell cannot be deleted.
 
-To change the state of a selected cell, press the corresponding button on the toolbar:
-
-
-
 The individual cell's state is stored in its metadata and is applied to the cell if the extension is loaded.
 
 ## Requirements
@@ -46,7 +42,7 @@ The individual cell's state is stored in its metadata and is applied to the cell
 To install the extension, execute:
 
 ```bash
-pip install jupyterlab_freeze
+pip install jupyterlab_freeze_improved
 ```
 
 ## Uninstall
@@ -54,8 +50,44 @@ pip install jupyterlab_freeze
 To remove the extension, execute:
 
 ```bash
-pip uninstall jupyterlab_freeze
+pip uninstall jupyterlab_freeze_improved
 ```
+
+## JupyterHub
+
+If you are deploying JupyterHub for the purposes of teaching, this extension can be installed for all current or future users using `pip`.
+
+Typically, you will have installed JupyterHub in a virtual environment (named `jupyterhub` in the examples below).
+
+Therefore, to install `jupyterlab_freeze_improved` for all users, first ensure you are in your virtual environment (in this case, located in `/opt/jupyterhub`):
+
+```bash
+$ source /opt/jupyterhub/bin/activate
+```
+
+and then install `jupyterlab_freeze_improved` using pip:
+
+```bash
+(jupyterhub) $ pip install jupyterlab_freeze_improved
+```
+
+You can view all installed/enabled extensions, as follows:
+
+```bash
+(jupyterhub) $ jupyter labextension list
+```
+
+this will output something similar to:
+
+```bash
+JupyterLab v4.2.5
+/opt/jupyterhub/share/jupyter/labextensions
+        jupyterlab_pygments v0.3.0 enabled OK (python, jupyterlab_pygments)
+        @jupyter-notebook/lab-extension v7.2.2 enabled OK
+        @jupyter-widgets/jupyterlab-manager v5.0.13 enabled OK (python, jupyterlab_widgets)
+```
+
+See <https://jupyterlab.readthedocs.io/en/4.2.x/user/extensions.html> for more information.
 
 ## Contributing
 
