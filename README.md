@@ -68,13 +68,13 @@ $ source /opt/jupyterhub/bin/activate
 and then install `jupyterlab_freeze_improved` using pip:
 
 ```bash
-(jupyterhub) $ pip install jupyterlab_freeze_improved
+(jupyterhub)$ pip install jupyterlab_freeze_improved
 ```
 
 You can view all installed/enabled extensions, as follows:
 
 ```bash
-(jupyterhub) $ jupyter labextension list
+(jupyterhub)$ jupyter labextension list
 ```
 
 this will output something similar to:
@@ -82,6 +82,7 @@ this will output something similar to:
 ```bash
 JupyterLab v4.2.5
 /opt/jupyterhub/share/jupyter/labextensions
+        jupyterlab_freeze_improved v1.0.0 enabled OK (python, jupyterlab_freeze_improved)
         jupyterlab_pygments v0.3.0 enabled OK (python, jupyterlab_pygments)
         @jupyter-notebook/lab-extension v7.2.2 enabled OK
         @jupyter-widgets/jupyterlab-manager v5.0.13 enabled OK (python, jupyterlab_widgets)
