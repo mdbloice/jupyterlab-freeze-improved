@@ -17,11 +17,11 @@ import { FreezeWidget } from './freeze';
  */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab-freeze:plugin',
-  description: 'Jupyterlab version of freeze extension',
+  description: 'Freeze code and markdown cells so that they are not editable, executable, or deletable.',
   autoStart: true,
   requires: [INotebookTracker],
   activate: (app: JupyterFrontEnd, notebookTracker: INotebookTracker) => {
-    console.log('JupyterLab extension jupyterlab-freeze is activated!');
+    console.log('JupyterLab extension jupyterlab_freeze_improved is activated!');
 
     notebookTracker.widgetAdded.connect((_: any, notebookPanel: NotebookPanel) => {
       // Retrieve notebook toolbar

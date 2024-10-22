@@ -16,6 +16,6 @@ test('should emit an activation console message', async ({ page }) => {
   await page.goto();
 
   expect(
-    logs.filter(s => s === 'JupyterLab extension jupyterlab_freeze_improved is activated!')
+    logs.filter(s => s === 'JupyterLab extension jupyterlab_freeze_improved is activated! (jupyterlab_freeze.spec.ts)')
   ).toHaveLength(1);
 });

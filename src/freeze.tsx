@@ -7,7 +7,7 @@
 */
 
 import { ISessionContext } from '@jupyterlab/apputils';
-import { Cell, CodeCell, ICellModel } from '@jupyterlab/cells';
+import { Cell, CodeCell, ICellModel, MarkdownCell } from '@jupyterlab/cells';  // MDB: Added MarkdownCell
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { KernelMessage } from '@jupyterlab/services';
 import { ReactWidget } from '@jupyterlab/ui-components';
@@ -67,6 +67,7 @@ function updateMetadata(state: CellState, cell: Cell<ICellModel>) {
         cell.model.setMetadata('editable', true);
         cell.model.setMetadata('deletable', true);
         cell.model.setMetadata('frozen', false);
+        cell.model.setMetadata('markdown_frozen', false);  // MDB
         // MDB: Do not alter the CSS as we do not want to change the cell colours.
         // cell.removeClass('jp-mod-frozen');
         // cell.removeClass('jp-mod-frozen-readonly');
@@ -75,6 +76,7 @@ function updateMetadata(state: CellState, cell: Cell<ICellModel>) {
         cell.model.setMetadata('editable', false);
         cell.model.setMetadata('deletable', false);
         cell.model.setMetadata('frozen', false);
+        cell.model.setMetadata('markdown_frozen', false);  // MDB
         // MDB: Do not alter the CSS as we do not want to change the cell colours.
         // cell.removeClass('jp-mod-frozen');
         // cell.addClass('jp-mod-frozen-readonly');
@@ -83,6 +85,7 @@ function updateMetadata(state: CellState, cell: Cell<ICellModel>) {
         cell.model.setMetadata('editable', false);
         cell.model.setMetadata('deletable', false);
         cell.model.setMetadata('frozen', true);
+        cell.model.setMetadata('markdown_frozen', false);  // MDB
         // MDB: Do not alter the CSS as we do not want to change the cell colours.
         // cell.addClass('jp-mod-frozen');
         // cell.removeClass('jp-mod-frozen-readonly');
@@ -105,7 +108,7 @@ function updateMetadata(state: CellState, cell: Cell<ICellModel>) {
       case 'read_only':
         cell.model.setMetadata('editable', false);
         cell.model.setMetadata('deletable', false);
-        cell.model.setMetadata('frozen', true);  // MDB: changed from false to true here.
+        cell.model.setMetadata('frozen', false);
         // MDB: Do not alter the CSS as we do not want to change the cell colours.
         // cell.removeClass('jp-mod-frozen');
         // cell.addClass('jp-mod-frozen-readonly');
@@ -113,10 +116,11 @@ function updateMetadata(state: CellState, cell: Cell<ICellModel>) {
       case 'frozen':
         cell.model.setMetadata('editable', false);
         cell.model.setMetadata('deletable', false);
-        cell.model.setMetadata('frozen', true);
+        cell.model.setMetadata('frozen', true);  // MDB: changed from false to true here.
         // MDB: Do not alter the CSS as we do not want to change the cell colours.
         // cell.addClass('jp-mod-frozen');
         // cell.removeClass('jp-mod-frozen-readonly');
+        console.log("Markdown Cell frozen button pressed...");
         break;
     }
     cell.update();
@@ -246,4 +250,15 @@ CodeCell.execute = async function (
     return;
   }
   return execute(cell, sessionContext, metadata);
+};
+
+// Override the MarkdownCell's onActivateRequest method to prevent editing when frozen
+const originalOnActivateRequest = MarkdownCell.prototype.onActivateRequest;
+MarkdownCell.prototype.onActivateRequest = function(msg: any): void {
+  if (this.model.getMetadata('markdown_frozen')) {
+    // If the cell is frozen, don't allow editing
+    return;
+  }
+  // Otherwise, call the original method
+  originalOnActivateRequest.call(this, msg);
 };
