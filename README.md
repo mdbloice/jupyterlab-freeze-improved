@@ -2,31 +2,38 @@
 
 **WORK IN PROGRESS!**
 
-An **opinionated** version of `DataDog/jupyterlab-freeze`.
+An **opinionated** version of `DataDog/jupyterlab-freeze`. 
 
-Allows you to freeze cells in JupyterLab notebooks. Based on <https://github.com/DataDog/jupyterlab-freeze>.
+Allows you to freeze cells in JupyterLab notebooks, which can be useful in teaching enviroments, where students can be prevented from accidentally altering code cells, or viewing the source of markdown cells meant purely for . Forked from <https://github.com/DataDog/jupyterlab-freeze>.
 
 ---
 
-This extension is based on the freeze extension by [jupyter_contrib_nbextensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tree/master/src/jupyter_contrib_nbextensions/nbextensions/freeze).
-
-This repository brings the extension to jupyterlab.
-
 This extension allows to make cells read-only or frozen. It provides three buttons:
-* unlock
-* read-only
-* frozen
+
+![freeze-icons](images/freeze-icons.png)
+
+Namely:
+
+- Unlocked
+- Read-only
+- Frozen
+
+For **code cells**:
+
+- _Unlocked_: The cell behaves normally.
+- _Read-only_: The cell can be executed, but its input cannot be changed.
+- _Frozen_: The cell cannot be edited, deleted, or executed.
+
+For **markdown cells**:
 
 
-For **code-cells**:
-- _read-only_:  The cell can be executed, but its input cannot be changed.
-- _frozen_: The cell cannot be edited or executed.
+- _Unlocked_: The cell behaves normally.
+- _Read-only_: Cell markdown source can be viewed by double-clicking on it, but cannot be changed. The cell also cannot be deleted.
+- _Frozen_: Cell input cannot be viewed by double-clicking on it. The cell cannot be deleted.
 
-For **markdown-cells**:
-- _read-only_ Cell input can be viewed by double-clicking on it, but cannot be changed.
-- _frozen_: Cell input cannot be viewed by double-clicking on it.
+To change the state of a selected cell, press the corresponding button on the toolbar:
 
-To change the state of a selected cell, press the corresponding button.
+
 
 The individual cell's state is stored in its metadata and is applied to the cell if the extension is loaded.
 
@@ -121,3 +128,7 @@ More information are provided within the [ui-tests](./ui-tests/README.md) README
 ### Packaging the extension
 
 See [RELEASE](RELEASE.md)
+
+### Notes
+
+The `DataDog/jupyterlab-freeze` extension is based on the freeze extension by [jupyter_contrib_nbextensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tree/master/src/jupyter_contrib_nbextensions/nbextensions/freeze).
