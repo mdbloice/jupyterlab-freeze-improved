@@ -1,20 +1,20 @@
 {
-    "name": "jupyterlab_freeze",
-    "version": "0.1.2",
-    "description": "Jupyter freeze extension for jupyterlab!",
+    "name": "jupyterlab_freeze_improved",
+    "version": "1.0.0",
+    "description": "Allows you freeze code or markdown cells so that they are read-only.",
     "keywords": [
         "jupyter",
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "https://github.com/DataDog/jupyterlab-freeze",
+    "homepage": "https://github.com/mdbloice/jupyterlab-freeze-improved",
     "bugs": {
-        "url": "https://github.com/DataDog/jupyterlab-freeze/issues"
+        "url": "https://github.com/mdbloice/jupyterlab-freeze-improved/issues"
     },
     "license": "BSD-3-Clause",
     "author": {
-        "name": "Carlos Dominguez Becerril",
-        "email": "carlos.dominguez@datadoghq.com"
+        "name": "Marcus D. Bloice",
+        "email": "marcus.bloice@medunigraz.at"
     },
     "files": [
         "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
@@ -25,7 +25,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": "https://github.com/DataDog/jupyterlab-freeze"
+        "url": "https://github.com/mdbloice/jupyterlab-freeze-improved"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
@@ -37,7 +37,7 @@
         "clean": "jlpm clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
-        "clean:labextension": "rimraf jupyterlab_freeze/labextension jupyterlab_freeze/_version.py",
+        "clean:labextension": "rimraf jupyterlab_freeze_improved/labextension jupyterlab_freeze_improved/_version.py",
         "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
         "eslint": "jlpm eslint:check --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
@@ -101,8 +101,7 @@
     },
     "jupyterlab": {
         "extension": true,
-        "schemaDir": "schema",
-        "outputDir": "jupyterlab_freeze/labextension"
+        "outputDir": "jupyterlab_freeze_improved/labextension"
     },
     "eslintIgnore": [
         "node_modules",
