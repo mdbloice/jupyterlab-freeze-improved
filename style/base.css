@@ -24,7 +24,6 @@
   position: absolute;
   inset: 0;
   opacity: 0.5;
-  background: var(--jp-freeze-frozen-bg);
 }
 
 .jp-Notebook .jp-Cell.jp-mod-frozen-readonly:before {
@@ -35,5 +34,4 @@
   position: absolute;
   inset: 0;
   opacity: 0.5;
-  background: var(--jp-freeze-readonly-bg);
 }
