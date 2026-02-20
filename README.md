@@ -1,27 +1,33 @@
-# jupyterlab_freeze
+# JupyterLab Freeze Improved
 
-Jupyter freeze extension for jupyterlab!
+This is an opinionated fork of the JupyterLab Freeze extension ([DataDog/jupyterlab-freeze](https://github.com/DataDog/jupyterlab-freeze)).
 
-![](/images/example.gif)
+It has made the following changes:
 
-This extension is based on the freeze extension by [jupyter_contrib_nbextensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tree/master/src/jupyter_contrib_nbextensions/nbextensions/freeze).
+1. Cells do not change colour when in Read Only or Frozen mode. The state icons remain however, so that you know each cell's freeze state.
+2. Markdown source cannot be viewed in Markdown cells when in Frozen mode, only in Read Only mode.
 
-This repository brings the extension to jupyterlab.
+## What Make These Changes?
 
-This extension allows to make cells read-only or frozen. It provides three buttons:
+As our use case is teaching using Jupyter, we wished to make these changes and therefore this fork was created.
 
-- unlock
-- read-only
-- frozen
+## Synopsis
 
-For **code-cells**:
+This extension allows you to make cells read-only or frozen. It provides three buttons:
 
-- _read-only_: it can be executed, but its input cannot be changed.
-- _frozen_: It cannot be either altered or executed.
+- Unlock
+- Read-Only
+- Frozen
 
-For **markdown-cells**:
+For **code cells**:
 
-- _read-only_ / _frozen_: It's input can be viewed by double-clicking on it, but cannot be changed.
+- _Read Only_: the call can be executed, but its input cannot be changed.
+- _Frozen_: the cell cannot be either altered or executed.
+
+For **Markdown cells**:
+
+- _Read Only_: The cell's Markdown source can viewed by double-clicking on it, but it cannot be changed.
+- _Frozen_: The cell's Markdown source can **not** be viewed when double-clicking on it.
 
 To change the state of a selected cell, press the corresponding button.
 
