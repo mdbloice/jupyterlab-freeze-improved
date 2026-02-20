@@ -4,8 +4,9 @@
 */
 
 import { ISessionContext } from '@jupyterlab/apputils';
-import { Cell, CodeCell, ICellModel } from '@jupyterlab/cells';
-import { NotebookPanel } from '@jupyterlab/notebook';
+import { Cell, CodeCell, ICellModel, MarkdownCell } from '@jupyterlab/cells';
+import { IChangedArgs } from '@jupyterlab/coreutils';
+import { Notebook, NotebookPanel } from '@jupyterlab/notebook';
 import { KernelMessage } from '@jupyterlab/services';
 import { ReactWidget } from '@jupyterlab/ui-components';
 import { JSONObject } from '@lumino/coreutils';
@@ -146,6 +147,7 @@ export class FreezeWidget extends ReactWidget {
 
   notebook: NotebookPanel;
   private readonly _onDblClickCapture: (event: MouseEvent) => void;
+  private readonly _onKeyDownCapture: (event: KeyboardEvent) => void;
 
   constructor(notebook: NotebookPanel) {
     /**
@@ -156,11 +158,22 @@ export class FreezeWidget extends ReactWidget {
     super();
     this.notebook = notebook;
     this._onDblClickCapture = this._handleDblClickCapture.bind(this);
+    this._onKeyDownCapture = this._handleKeyDownCapture.bind(this);
     this.notebook.content.node.addEventListener(
       'dblclick',
       this._onDblClickCapture,
       true
     );
+    this.notebook.content.node.addEventListener(
+      'keydown',
+      this._onKeyDownCapture,
+      true
+    );
+    this.notebook.content.activeCellChanged.connect(
+      this._onActiveCellChanged,
+      this
+    );
+    this.notebook.content.stateChanged.connect(this._onStateChanged, this);
     this.notebook.context.ready.then(() => {
       const content = this.notebook.content;
       const length: number = content.model?.cells.length || 0;
@@ -183,6 +196,16 @@ export class FreezeWidget extends ReactWidget {
       this._onDblClickCapture,
       true
     );
+    this.notebook.content.node.removeEventListener(
+      'keydown',
+      this._onKeyDownCapture,
+      true
+    );
+    this.notebook.content.activeCellChanged.disconnect(
+      this._onActiveCellChanged,
+      this
+    );
+    this.notebook.content.stateChanged.disconnect(this._onStateChanged, this);
     super.dispose();
   }
 
@@ -195,6 +218,57 @@ export class FreezeWidget extends ReactWidget {
     if (cell.model.getMetadata('frozen') === true) {
       event.preventDefault();
       event.stopPropagation();
+    }
+  }
+
+  private _handleKeyDownCapture(event: KeyboardEvent): void {
+    if (
+      event.key !== 'Enter' ||
+      event.shiftKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const activeCell = this.notebook.content.activeCell;
+    if (
+      activeCell?.model.type === 'markdown' &&
+      activeCell.model.getMetadata('frozen') === true
+    ) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  private _onActiveCellChanged(_: Notebook, __: Cell | null): void {
+    // Notebook may unrender markdown later in the same event turn.
+    queueMicrotask(() => this._enforceFrozenMarkdownView());
+  }
+
+  private _onStateChanged(
+    _: Notebook,
+    args: IChangedArgs<unknown, unknown, string>
+  ): void {
+    if (args.name === 'mode' && args.newValue === 'edit') {
+      this._enforceFrozenMarkdownView();
+    }
+  }
+
+  private _enforceFrozenMarkdownView(): void {
+    const activeCell = this.notebook.content.activeCell;
+    if (
+      !activeCell ||
+      activeCell.model.type !== 'markdown' ||
+      activeCell.model.getMetadata('frozen') !== true
+    ) {
+      return;
+    }
+
+    (activeCell as MarkdownCell).rendered = true;
+    if (this.notebook.content.mode === 'edit') {
+      this.notebook.content.mode = 'command';
     }
   }
 
