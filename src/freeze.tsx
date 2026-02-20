@@ -145,6 +145,7 @@ export class FreezeWidget extends ReactWidget {
    */
 
   notebook: NotebookPanel;
+  private readonly _onDblClickCapture: (event: MouseEvent) => void;
 
   constructor(notebook: NotebookPanel) {
     /**
@@ -154,6 +155,12 @@ export class FreezeWidget extends ReactWidget {
      */
     super();
     this.notebook = notebook;
+    this._onDblClickCapture = this._handleDblClickCapture.bind(this);
+    this.notebook.content.node.addEventListener(
+      'dblclick',
+      this._onDblClickCapture,
+      true
+    );
     this.notebook.context.ready.then(() => {
       const content = this.notebook.content;
       const length: number = content.model?.cells.length || 0;
@@ -165,6 +172,44 @@ export class FreezeWidget extends ReactWidget {
       }
       this.notebook.update();
     });
+  }
+
+  dispose(): void {
+    if (this.isDisposed) {
+      return;
+    }
+    this.notebook.content.node.removeEventListener(
+      'dblclick',
+      this._onDblClickCapture,
+      true
+    );
+    super.dispose();
+  }
+
+  private _handleDblClickCapture(event: MouseEvent): void {
+    const cell = this._findEventCell(event.target);
+    if (!cell || cell.model.type !== 'markdown') {
+      return;
+    }
+
+    if (cell.model.getMetadata('frozen') === true) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  private _findEventCell(target: EventTarget | null): Cell<ICellModel> | null {
+    if (!(target instanceof Node)) {
+      return null;
+    }
+
+    for (const cell of this.notebook.content.widgets) {
+      if (cell.node.contains(target)) {
+        return cell;
+      }
+    }
+
+    return null;
   }
 
   render(): React.JSX.Element {
