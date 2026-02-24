@@ -94,7 +94,7 @@ jupyter lab build --minimize=False
 ### Development uninstall
 
 ```bash
-pip uninstall jupyterlab_freeze_improved
+pip uninstall jupyterlab-freeze-improved
 ```
 
 In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
