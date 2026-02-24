@@ -124,3 +124,7 @@ More information are provided within the [ui-tests](./ui-tests/README.md) README
 ### Packaging the extension
 
 See [RELEASE](RELEASE.md)
+
+# Thanks
+
+Many thanks to the developers of the project upon which this project is based: JupyterLab Freeze, see [DataDog/jupyterlab-freeze](https://github.com/DataDog/jupyterlab-freeze). In particular, their excellent documentation regarding extending the package made it easy to adapt this version of the software to the needs of our lab.
