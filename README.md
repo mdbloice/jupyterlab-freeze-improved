@@ -67,7 +67,7 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Change directory to the jupyterlab_freeze directory
+# Change directory to the project's root directory
 # Install package in development mode
 pip install -e "."
 # Link your development version of the extension with JupyterLab
@@ -96,12 +96,12 @@ jupyter lab build --minimize=False
 ### Development uninstall
 
 ```bash
-pip uninstall jupyterlab_freeze
+pip uninstall jupyterlab_freeze_improved
 ```
 
 In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
 command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `jupyterlab_freeze` within that folder.
+folder is located. Then you can remove the symlink named `jupyterlab_freeze_improved` within that folder.
 
 ### Testing the extension
 
