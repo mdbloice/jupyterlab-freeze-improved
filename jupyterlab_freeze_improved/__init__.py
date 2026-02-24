@@ -1,6 +1,6 @@
 # Licensed under the BSD 3-Clause License.
 # Original work Copyright 2023 Datadog, Inc.
-# Modifications Copyright 2026 Marcus D. Bloice.
+# Modifications Copyright 2026 Marcus D. Bloice, Medical University Graz
 
 
 try:

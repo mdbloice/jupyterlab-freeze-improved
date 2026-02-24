@@ -2,7 +2,7 @@
  * Licensed under the BSD 3-Clause License.
  *
  * Original work Copyright (c) 2023 Datadog, Inc.
- * Modifications Copyright (c) 2026 Marcus D. Bloice.
+ * Modifications Copyright (c) 2026 Marcus D. Bloice, Medical University Graz
  */
 
 import {
