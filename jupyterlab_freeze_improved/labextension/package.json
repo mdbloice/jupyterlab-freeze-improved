@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab_freeze_improved",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Make cells read-only in JupyterLab.",
   "keywords": [
     "jupyter",
@@ -104,7 +104,7 @@
     "schemaDir": "schema",
     "outputDir": "jupyterlab_freeze_improved/labextension",
     "_build": {
-      "load": "static/remoteEntry.7deadb7d27fc0be39380.js",
+      "load": "static/remoteEntry.35e0980ef57634988b2d.js",
       "extension": "./extension",
       "style": "./style"
     }

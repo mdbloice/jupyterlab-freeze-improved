@@ -713,7 +713,7 @@
             },
             "react-icons": {},
             "jupyterlab_freeze_improved": {
-              "version": "0.2.0",
+              "version": "0.2.1",
               "singleton": true,
               "import": "/home/mblo/Documents/JupyterLab-Freeze/jupyterlab-freeze/lib/index.js"
             }

@@ -7,11 +7,11 @@ It has made the following changes:
 1. Cells do not change colour when in Read Only or Frozen mode. The state icons remain however, so that you know each cell's freeze state.
 2. Markdown source cannot be viewed in Markdown cells when in Frozen mode, only in Read Only mode.
 
-## What Make These Changes?
+## Why Make These Changes?
 
-As our use case is teaching using Jupyter, we wished to make these changes and therefore this fork was created.
+As the use case for Jupyter at our group is teaching seminars and labs, these small changes were made to better suit the intended workflow.
 
-## Synopsis
+# Synopsis
 
 This extension allows you to make cells read-only or frozen. It provides three buttons:
 
