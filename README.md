@@ -39,12 +39,10 @@ The individual cell's state is stored in its metadata and is applied to the cell
 
 ## Install
 
-**NOTE!** The package is not yet on PyPI and currently cannot be installed. This will be fixed in due course, when testing is complete.
-
 To install the extension, execute:
 
 ```bash
-pip install jupyterlab_freeze_improved
+pip install jupyterlab-freeze-improved
 ```
 
 ## Uninstall
@@ -52,7 +50,7 @@ pip install jupyterlab_freeze_improved
 To remove the extension, execute:
 
 ```bash
-pip uninstall jupyterlab_freeze_improved
+pip uninstall jupyterlab-freeze-improved
 ```
 
 ## Contributing
