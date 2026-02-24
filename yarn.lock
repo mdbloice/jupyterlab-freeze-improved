@@ -9368,9 +9368,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jupyterlab_freeze@workspace:.":
+"jupyterlab_freeze_improved@workspace:.":
   version: 0.0.0-use.local
-  resolution: "jupyterlab_freeze@workspace:."
+  resolution: "jupyterlab_freeze_improved@workspace:."
   dependencies:
     "@jupyterlab/application": ^4.5.1
     "@jupyterlab/builder": ^4.0.0

@@ -3,7 +3,7 @@ requires = ["hatchling>=1.5.0", "jupyterlab>=4.0.0,<5", "hatch-nodejs-version>=0
 build-backend = "hatchling.build"
 
 [project]
-name = "jupyterlab_freeze"
+name = "jupyterlab_freeze_improved"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
@@ -33,24 +33,24 @@ source = "nodejs"
 fields = ["description", "authors", "urls"]
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["jupyterlab_freeze/labextension"]
+artifacts = ["jupyterlab_freeze_improved/labextension"]
 exclude = [".github", "binder"]
 
 [tool.hatch.build.targets.wheel.shared-data]
-"jupyterlab_freeze/labextension" = "share/jupyter/labextensions/jupyterlab_freeze"
-"install.json" = "share/jupyter/labextensions/jupyterlab_freeze/install.json"
+"jupyterlab_freeze_improved/labextension" = "share/jupyter/labextensions/jupyterlab_freeze_improved"
+"install.json" = "share/jupyter/labextensions/jupyterlab_freeze_improved/install.json"
 
 [tool.hatch.build.hooks.version]
-path = "jupyterlab_freeze/_version.py"
+path = "jupyterlab_freeze_improved/_version.py"
 
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder>=0.5"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
-    "jupyterlab_freeze/labextension/static/style.js",
-    "jupyterlab_freeze/labextension/package.json",
+    "jupyterlab_freeze_improved/labextension/static/style.js",
+    "jupyterlab_freeze_improved/labextension/package.json",
 ]
-skip-if-exists = ["jupyterlab_freeze/labextension/static/style.js"]
+skip-if-exists = ["jupyterlab_freeze_improved/labextension/static/style.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
 build_cmd = "build:prod"
@@ -60,7 +60,7 @@ npm = ["jlpm"]
 build_cmd = "install:extension"
 npm = ["jlpm"]
 source_dir = "src"
-build_dir = "jupyterlab_freeze/labextension"
+build_dir = "jupyterlab_freeze_improved/labextension"
 
 [tool.jupyter-releaser.options]
 version_cmd = "hatch version"

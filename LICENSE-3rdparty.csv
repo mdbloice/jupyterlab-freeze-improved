@@ -26,7 +26,7 @@ exponential-backoff,npm,Apache-2.0,Copyright 2019 Coveo Solutions Inc.
 http-cache-semantics,npm,BSD-2-Clause,Copyright 2016-2018 Kornel Lesiński
 is-lambda,npm,MIT,Copyright (c) 2016-2017 Thomas Watson Steen
 jest,npm,MIT,"Copyright (c) Meta Platforms, Inc. and affiliates."
-jupyterlab_freeze,npm,BSD-3-Clause,"Copyright (c) 2023, Datadog, Inc."
+jupyterlab-freeze-improved,npm,BSD-3-Clause,"Original work Copyright (c) 2023 Datadog, Inc.; Modifications Copyright (c) 2026 Marcus D. Bloice"
 make-fetch-happen,npm,ISC,"Copyright 2017-2022 (c) npm, Inc."
 node-gyp,npm,MIT,Copyright (c) 2012 Nathan Rajlich <nathan@tootallnate.net>
 npm-run-all,npm,MIT,Copyright (c) 2015 Toru Nagashima
