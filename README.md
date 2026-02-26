@@ -1,5 +1,7 @@
 # JupyterLab Freeze Improved
 
+![JupyterLab Freeze Improved Demo](./images/freeze-demo.gif)
+
 This is an opinionated fork of the JupyterLab Freeze extension ([DataDog/jupyterlab-freeze](https://github.com/DataDog/jupyterlab-freeze)).
 
 It has made the following changes:
