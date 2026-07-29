@@ -125,7 +125,6 @@ dmypy.json
 .yarn/
 
 # Mine
-IMPROVED.AI
 .vscode/settings.json
 README_MDB.md
 CLAUDE.md
