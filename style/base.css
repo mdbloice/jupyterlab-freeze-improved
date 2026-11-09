@@ -26,6 +26,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .jp-Notebook .jp-Cell.jp-mod-frozen-readonly:before {
@@ -36,4 +37,5 @@
   position: absolute;
   inset: 0;
   opacity: 0.5;
+  pointer-events: none;
 }
